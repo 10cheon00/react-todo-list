@@ -1,5 +1,10 @@
+.App {
+  max-width: var(--maxWidth-wrapper);
+  margin: auto;
+}
+
 .App-header {
-  background-color: #1c876b;
+  background-color: #eb483d;
   height: 10rem;
   font-size: 4rem;
   vertical-align: middle;
@@ -7,4 +12,5 @@
   align-items: center;
   justify-content: center;
   color: white;
+  border-radius: 0 0 15px 15px;
 }
