@@ -1,29 +1,19 @@
+import { useReducer } from "react";
+
 import CreateTodoButton from "components/create-todo-button";
 import TodoList from "components/todo-list";
+import { todoListReducer, todoListInitializer } from "helpers/todo-list-reducer";
 
 import "styles/app.css";
 
 const App = () => {
-  const db = [
-    {
-      title: "asdf",
-      date: "2000-01-01",
-      complete: true,
-      important: false,
-    },
-    {
-      title: "asdf",
-      date: "2000-01-02",
-      complete: false,
-      important: true,
-    },
-  ];
+  const [db, dispatch] = useReducer(todoListReducer, [], todoListInitializer);
 
   return (
     <div className="App">
       <header className="App-header">Todo-list</header>
-      <TodoList dataList={db} />
-      <CreateTodoButton />
+      <TodoList dataList={db} todoListDispatch={dispatch}/>
+      <CreateTodoButton todoListDispatch={dispatch}/>
     </div>
   );
 };

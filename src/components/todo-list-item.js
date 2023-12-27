@@ -1,30 +1,33 @@
-import { useState } from "react";
-
 import EmptyStarIcon from "components/empty-star-icon";
 import TrashBinIcon from "components/trash-bin-icon";
 
 import "styles/todo-list-item.css";
+import { updateTodo, removeTodo } from "helpers/api";
 
-const TodoListItem = ({ todo }) => {
-  const [todoState, setTodo] = useState(todo);
+const TodoListItem = ({ todo, todoListDispatch }) => {
 
   const toggleImportant = () => {
-    const newTodo = { ...todoState };
-    newTodo.important = !newTodo.important;
-    setTodo(newTodo);
+    todo.important = !todo.important;
+    updateTodo(todo);
+    todoListDispatch();
   };
+
+  const remove = () => {
+    removeTodo(todo);
+    todoListDispatch();
+  }
 
   return (
     <li
       className={`todo-list-item ${
-        todoState.complete ? "todo-list-item-complete" : ""
+        todo.complete ? "todo-list-item-complete" : ""
       }`}
     >
       <div className="todo-list-item-column">
-        <p className="todo-list-item-title">{todoState.title}</p>
+        <p className="todo-list-item-title">{todo.title}</p>
         <div
           className={`todo-list-item-icon todo-list-item-important ${
-            todoState.important ? "todo-list-item-important-checked" : ""
+            todo.important ? "todo-list-item-important-checked" : ""
           }`}
           onClick={toggleImportant}
         >
@@ -32,8 +35,8 @@ const TodoListItem = ({ todo }) => {
         </div>
       </div>
       <div className="todo-list-item-column">
-        <p className="todo-list-item-date">{todoState.date}</p>
-        <div className="todo-list-item-icon todo-list-item-trashbin" onClick={todoState.removeItem}>
+        <p className="todo-list-item-date">{todo.date}</p>
+        <div className="todo-list-item-icon todo-list-item-trashbin" onClick={remove}>
           <TrashBinIcon />
         </div>
       </div>
