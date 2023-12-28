@@ -6,7 +6,7 @@
   left: 25%;
   height: 4rem;
   color: white;
-  background-color: #ff7c73;
+  background-color: var(--color-todo-list-button);
   transition: opacity linear 0.2s;
   transition: background-color linear 0.2s;
   
@@ -19,5 +19,5 @@
 }
 
 .create-todo-button:active {
-  background-color: #b52218;
+  background-color: var(--color-todo-list-button-hover);
 }
